@@ -74,37 +74,7 @@
     </div>
 
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-center justify-between h-16 md:h-20">
-                <a href="#" class="flex items-center gap-2.5">
-                    <div class="w-10 h-10 md:w-12 md:h-12 bg-khan-blue rounded-full flex items-center justify-center border-2 border-khan-gold">
-                        <iconify-icon icon="lucide:bus" class="text-white" width="22"></iconify-icon>
-                    </div>
-                    <div>
-                        <h1 class="text-lg md:text-xl font-bold text-khan-blue leading-tight">Khan Enterprise</h1>
-                        <p class="text-[10px] md:text-xs text-gray-400 -mt-0.5 font-english">খান এন্টারপ্রাইজ</p>
-                    </div>
-                </a>
-                <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-700">
-                    <a href="#" class="nav-link text-khan-blue font-semibold" style="transition:color .2s">হোম</a>
-                    <a href="#schedule" class="nav-link" style="transition:color .2s">সিডিউল</a>
-                    <a href="#fare" class="nav-link" style="transition:color .2s">ভাড়া</a>
-                    <a href="#counters" class="nav-link" style="transition:color .2s">কাউন্টার</a>
-                    <a href="#about" class="nav-link" style="transition:color .2s">আমাদের সম্পর্কে</a>
-                    <a href="#contact" class="nav-link" style="transition:color .2s">যোগাযোগ</a>
-                </nav>
-                <div class="flex items-center gap-3">
-                    <a href="#search" class="hidden md:inline-flex btn-primary bg-khan-blue text-white px-5 py-2.5 rounded-lg text-sm font-semibold">
-                        টিকেট বুকিং
-                    </a>
-                    <button id="mobileToggle" class="lg:hidden p-2 text-gray-700">
-                        <iconify-icon icon="lucide:menu" width="24"></iconify-icon>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+     <include src="components/header.html">
 
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-white">
@@ -117,15 +87,9 @@
             </div>
             <button id="mobileClose" class="p-2 text-gray-600"><iconify-icon icon="lucide:x" width="24"></iconify-icon></button>
         </div>
-        <nav class="p-4 space-y-1">
-            <a href="#" class="block px-4 py-3 rounded-lg bg-khan-lightblue text-khan-blue font-semibold">হোম</a>
-            <a href="#schedule" class="block px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-700">সিডিউল</a>
-            <a href="#fare" class="block px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-700">ভাড়া</a>
-            <a href="#counters" class="block px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-700">কাউন্টার</a>
-            <a href="#about" class="block px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-700">আমাদের সম্পর্কে</a>
-            <a href="#contact" class="block px-4 py-3 rounded-lg hover:bg-gray-50 text-gray-700">যোগাযোগ</a>
-            <div class="pt-4"><a href="#search" class="block text-center bg-khan-blue text-white py-3 rounded-lg font-semibold">টিকেট বুকিং</a></div>
-        </nav>
+         
+        <include src="components/navbar.html">
+
     </div>
 
     <!-- Hero Slider -->
@@ -493,53 +457,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-khan-dark text-white">
-        <div class="max-w-7xl mx-auto px-4 py-10">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-10 h-10 bg-khan-blue rounded-full flex items-center justify-center border border-khan-gold"><iconify-icon icon="lucide:bus" class="text-white" width="20"></iconify-icon></div>
-                        <div><h4 class="font-bold text-white">Khan Enterprise</h4><p class="text-[10px] text-white/40">খান এন্টারপ্রাইজ</p></div>
-                    </div>
-                    <p class="text-sm text-white/50 leading-relaxed">ঢাকা থেকে তারাকান্দি — আপনার বিশ্বস্ত এন্টারপ্রাইজ সেবা।</p>
-                    <div class="flex gap-3 mt-4">
-                        <a href="#" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-khan-blue transition-colors"><iconify-icon icon="lucide:facebook" width="16"></iconify-icon></a>
-                        <a href="#" class="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center hover:bg-khan-blue transition-colors"><iconify-icon icon="lucide:youtube" width="16"></iconify-icon></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">দ্রুত লিংক</h4>
-                    <ul class="space-y-2 text-sm text-white/50">
-                        <li><a href="#search" class="hover:text-khan-gold transition-colors">টিকেট বুকিং</a></li>
-                        <li><a href="#schedule" class="hover:text-khan-gold transition-colors">সিডিউল</a></li>
-                        <li><a href="#fare" class="hover:text-khan-gold transition-colors">ভাড়া তথ্য</a></li>
-                        <li><a href="#about" class="hover:text-khan-gold transition-colors">আমাদের সম্পর্কে</a></li>
-                        <li><a href="#contact" class="hover:text-khan-gold transition-colors">যোগাযোগ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">পেমেন্ট পার্টনার</h4>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="bg-bkash/20 text-bkash px-3 py-1.5 rounded-lg text-xs font-bold">bKash</span>
-                        <span class="bg-nagad/20 text-nagad px-3 py-1.5 rounded-lg text-xs font-bold">Nagad</span>
-                        <span class="bg-rocket/20 text-rocket px-3 py-1.5 rounded-lg text-xs font-bold">Rocket</span>
-                    </div>
-                    <h4 class="font-semibold mt-6 mb-2">যোগাযোগ</h4>
-                    <p class="text-xs text-white/50">+880 1302-516469</p>
-                    <p class="text-xs text-white/50">info@khanEnterprise.com</p>
-                </div>
-            </div>
-        </div>
-        <div class="border-t border-white/10">
-            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-2">
-                <p class="text-xs text-white/40">© ২০২৪ খান এন্টারপ্রাইজ। সর্বস্বত্ব সংরক্ষিত।</p>
-                <div class="flex gap-4">
-                    <a href="#" class="text-xs text-white/40 hover:text-white/70">গোপনীয়তা নীতি</a>
-                    <a href="#" class="text-xs text-white/40 hover:text-white/70">শর্তাবলী</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+   <include src="components/footer.html">
 
     <!-- Scroll to Top -->
     <button id="scrollTop" class="fixed bottom-6 right-6 w-11 h-11 bg-khan-blue text-white rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all hover:bg-khan-darkblue z-50">
