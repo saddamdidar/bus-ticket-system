@@ -10,8 +10,4 @@ async function loadComponent(id, file) {
 }
 
 loadComponent("header", "components/header.html");
-loadComponent("header", "components/footer.html");
-loadComponent("header", "components/marquee.html");
-loadComponent("header", "components/navbar.html");
-loadComponent("header", "components/slider.html");
-loadComponent("header", "components/ticket-search.html");
+
