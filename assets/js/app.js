@@ -1,4 +1,3 @@
- <script>
         // ============ CONFIGURATION ============
         const CONFIG = {
             fares: { 'morning-ac': 550, 'afternoon-nonac': 300 }, // ← ভাড়া পরিবর্তন করুন (৳ ছাড়া)
@@ -327,4 +326,3 @@
         document.getElementById('bookingModal').addEventListener('click', function(e) {
             if (e.target === this && currentStep !== 4) closeModal();
         });
-    </script>
