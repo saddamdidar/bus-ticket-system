@@ -47,21 +47,6 @@
             }
         }
     
-
-
-async function loadComponent(id, file) {
-    const response = await fetch(file);
-    document.getElementById(id).innerHTML = await response.text();
-}
-
-loadComponent("header", "components/header.html");
-loadComponent("footer", "components/footer.html");
-loadComponent("navbar", "components/navbar.html");
-loadComponent("hero", "components/slider.html");
-loadComponent("hero", "components/marquee.html");
-loadComponent("footer", "components/ticket-search.html");
-
-
 </script>
 
 
@@ -94,7 +79,7 @@ loadComponent("footer", "components/ticket-search.html");
     </div>
 
     <!-- Header -->
-     <include src="components/header.html">
+   <div id="header"></div>
 
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[60] bg-white">
@@ -108,19 +93,20 @@ loadComponent("footer", "components/ticket-search.html");
             <button id="mobileClose" class="p-2 text-gray-600"><iconify-icon icon="lucide:x" width="24"></iconify-icon></button>
         </div>
          
-        <include src="components/navbar.html">
+         <div id="navbar"></div>
 
     </div>
 
     <!-- Hero Slider -->
-    <include src="components/slider.html"></include>
+     <div id="slider"></div>
 
 
     <!-- Marquee -->
-<include src="components/marquee.html"></include>
+ <div id="marquee"></div>
 
     <!-- Search / Booking -->
-   <include src="components/ticket-search.html"></include>
+ <div id="ticket-search"></div>
+
 
     <!-- Features -->
     <section class="py-10 bg-white border-b border-gray-100">
@@ -371,7 +357,8 @@ loadComponent("footer", "components/ticket-search.html");
     </section>
 
     <!-- Footer -->
-   <include src="components/footer.html">
+    <div id="footer"></div>
+
 
     <!-- Scroll to Top -->
     <button id="scrollTop" class="fixed bottom-6 right-6 w-11 h-11 bg-khan-blue text-white rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all hover:bg-khan-darkblue z-50">
@@ -528,6 +515,9 @@ loadComponent("footer", "components/ticket-search.html");
 
     <script src="assets/js/app.js"></script>
     <script src="assets/js/booking.js"></script>
+
+
+    <script src="assets/js/loader.js"></script>
 
     <!--
     ============================================================
