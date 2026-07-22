@@ -1,3 +1,34 @@
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        khan: {
+                            blue: '#1e3a5f',
+                            darkblue: '#142a45',
+                            lightblue: '#e8f0fe',
+                            gold: '#d4a017',
+                            darkgold: '#b8860b',
+                            red: '#d32f2f',
+                            green: '#2e7d32',
+                            dark: '#0f172a',
+                            gray: '#f5f5f5',
+                        },
+                        bkash: '#E2136E',
+                        nagad: '#F6921E',
+                        rocket: '#8C3494',
+                        card: '#1A1F71',
+                    },
+                    fontFamily: {
+                        bangla: ['Hind Siliguri', 'sans-serif'],
+                        english: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+            
+        
+        
         // ============ CONFIGURATION ============
         const CONFIG = {
             fares: { 'morning-ac': 550, 'afternoon-nonac': 300 }, // ← ভাড়া পরিবর্তন করুন (৳ ছাড়া)
