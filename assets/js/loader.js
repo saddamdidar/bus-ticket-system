@@ -1,3 +1,8 @@
+const components = [
+    ["header", "components/header.html"],
+    ["navbar", "components/navbar.html"]
+];
+
 async function loadComponent(id, file) {
     try {
         const response = await fetch(file);
@@ -6,13 +11,7 @@ async function loadComponent(id, file) {
             throw new Error(`Failed to load ${file}`);
         }
 
-        const html = await response.text();
-
-        const element = document.getElementById(id);
-
-        if (element) {
-            element.innerHTML = html;
-        }
+        document.getElementById(id).innerHTML = await response.text();
 
     } catch (error) {
         console.error(error);
@@ -20,7 +19,7 @@ async function loadComponent(id, file) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-
-    await loadComponent("header", "components/header.html");
-
+    for (const [id, file] of components) {
+        await loadComponent(id, file);
+    }
 });
