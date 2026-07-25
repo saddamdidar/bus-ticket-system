@@ -1,5 +1,7 @@
       // ============ CONFIGURATION ============
-        const CONFIG = {
+      function initializeApp() {  
+      
+      const CONFIG = {
             fares: { 'morning-ac': 550, 'afternoon-nonac': 300 }, // ← ভাড়া পরিবর্তন করুন (৳ ছাড়া)
             serviceCharge: 0, // সার্ভিস চার্জ প্রতি টিকেট
             totalSeats: 40,
@@ -326,3 +328,4 @@
         document.getElementById('bookingModal').addEventListener('click', function(e) {
             if (e.target === this && currentStep !== 4) closeModal();
         });
+        }
