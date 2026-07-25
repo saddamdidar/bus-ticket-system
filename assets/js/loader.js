@@ -1,6 +1,7 @@
 const components = [
     ["header", "components/header.html"],
-    ["navbar", "components/navbar.html"]
+    ["navbar", "components/navbar.html"],
+    ["notice-bar", "components/notice-bar.html"]
 ];
 
 async function loadComponent(id, file) {
