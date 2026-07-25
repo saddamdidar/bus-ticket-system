@@ -36,9 +36,21 @@
         setInterval(() => goToSlide((currentSlide + 1) % slides.length), 4500);
 
         // ============ MOBILE MENU ============
-        document.getElementById('mobileToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
-        document.getElementById('mobileClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
-        document.querySelectorAll('#mobileMenu a').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+        const element = document.getElementById("mobileToggle");
+
+if (element) {
+    element.addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+}
+
+            const element = document.getElementById("mobileClose");
+
+if (element) {
+    element.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));;
+}
+
+    document.querySelectorAll('#mobileMenu a').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+
+        
 
         // ============ TOAST ============
         function showToast(msg) {
