@@ -1,36 +1,55 @@
-        // ============ HERO SLIDER ============
-const slides = document.querySelectorAll(".slide-item");
-const dots = document.querySelectorAll(".slider-dot");
+// ===============================
+// HERO SLIDER
+// ===============================
 
-let currentSlide = 0;
+function initHero() {
 
-function goToSlide(i) {
+    const slides = document.querySelectorAll(".slide-item");
+    const dots = document.querySelectorAll(".slider-dot");
 
-    if (!slides.length || !dots.length) return;
+    if (!slides.length || !dots.length) {
+        console.log("Hero slider not found.");
+        return;
+    }
 
-    slides[currentSlide].classList.remove("active");
-    dots[currentSlide].style.background = "rgba(255,255,255,.5)";
+    let currentSlide = 0;
 
-    currentSlide = i;
+    function goToSlide(index) {
 
-    slides[currentSlide].classList.add("active");
-    dots[currentSlide].style.background = "#fff";
-}
+        slides[currentSlide].classList.remove("active");
+        dots[currentSlide].style.background = "rgba(255,255,255,.5)";
 
-if (slides.length && dots.length) {
+        currentSlide = index;
 
-    dots.forEach(dot => {
+        slides[currentSlide].classList.add("active");
+        dots[currentSlide].style.background = "#ffffff";
+    }
 
-        dot.addEventListener("click", () => {
-            goToSlide(Number(dot.dataset.index));
+    // Dot Click
+    dots.forEach((dot, index) => {
+
+        dot.addEventListener("click", function () {
+            goToSlide(index);
         });
 
     });
 
-    setInterval(() => {
+    // Auto Slide
+    setInterval(function () {
 
-        goToSlide((currentSlide + 1) % slides.length);
+        let nextSlide = currentSlide + 1;
+
+        if (nextSlide >= slides.length) {
+            nextSlide = 0;
+        }
+
+        goToSlide(nextSlide);
 
     }, 4500);
 
+    console.log("Hero initialized");
+
 }
+
+// Export
+window.initHero = initHero;
