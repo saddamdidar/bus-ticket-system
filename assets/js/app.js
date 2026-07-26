@@ -95,13 +95,20 @@ document.querySelectorAll("#mobileMenu a").forEach(link => {
         document.getElementById('journeyDate').value = today;
 
         // ============ SEARCH FORM ============
-        document.getElementById('searchForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            selectedDate = document.getElementById('journeyDate').value;
-            selectedCoach = document.getElementById('coachType').value;
-            if (!selectedCoach) { showToast('⚠️ কোচ নির্বাচন করুন'); return; }
-            openModal();
-        });
+        const searchForm = document.getElementById("searchForm");
+
+if (searchForm) {
+    searchForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        selectedDate = document.getElementById('journeyDate').value;
+        selectedCoach = document.getElementById('coachType').value;
+        if (!selectedCoach) {
+            showToast('⚠️ কোচ নির্বাচন করুন');
+            return;
+        }
+        openModal();
+    });
+}
 
         function quickBook(coach) {
             selectedDate = document.getElementById('journeyDate').value;
@@ -346,11 +353,15 @@ document.querySelectorAll("#mobileMenu a").forEach(link => {
         }
 
         // ============ CONTACT FORM ============
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('✅ আপনার বার্তা পাওয়া গেছে। শীঘ্রই যোগাযোগ করা হবে।');
-            this.reset();
-        });
+     const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        showToast('✅ আপনার বার্তা পাওয়া গেছে। শীঘ্রই যোগাযোগ করা হবে।');
+        this.reset();
+    });
+}
 
         // ============ SCROLL TOP ============
         const scrollBtn = document.getElementById('scrollTop');
@@ -367,7 +378,16 @@ document.querySelectorAll("#mobileMenu a").forEach(link => {
         }
 
         // ============ CLOSE MODAL ON OVERLAY CLICK ============
-        document.getElementById('bookingModal').addEventListener('click', function(e) {
-            if (e.target === this && currentStep !== 4) closeModal();
-        });
-        }
+       document.getElementById('bookingModal').addEventListener('click', function(e) {
+    if (e.target === this && currentStep !== 4) closeModal();
+});
+
+// Export functions for inline onclick
+window.quickBook = quickBook;
+window.closeModal = closeModal;
+window.toggleSeat = toggleSeat;
+window.goToStep = goToStep;
+window.selectPayment = selectPayment;
+window.processPayment = processPayment;
+
+}
