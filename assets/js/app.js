@@ -1,30 +1,20 @@
       // ============ CONFIGURATION ============    
     
 
-      // ============ APPLICATION STATE ============
-    
-    const APP_STATE = {
-    selectedCoach: "",
-    selectedDate: "",
-    selectedSeats: [],
-    selectedPayment: "",
-    currentStep: 1
-};
-
 // ============ INITIALIZE ============
 
-    function initializeApp() {  
-      
-         console.log("initializeApp() started");
-    
-    // DATE
-        const today = new Date().toISOString().split('T')[0];
+function initializeApp() {
 
-      const journeyDate = document.getElementById("journeyDate");
+    console.log("Initializing...");
 
-if (journeyDate) {
-    journeyDate.min = today;
-    journeyDate.value = today;
+    initNavigation();
+
+    initHero();
+
+    initBooking();
+
+    initContact();
+
 }
 
     // SEARCH FORM
