@@ -1,20 +1,29 @@
-// ===============================
-// NAVIGATION
-// ===============================
+/*
+====================================================
+Navigation
+====================================================
+*/
 
 function initNavigation() {
 
+    console.log("Navigation initialized");
+
+    const mobileMenu = document.getElementById("mobileMenu");
     const mobileToggle = document.getElementById("mobileToggle");
     const mobileClose = document.getElementById("mobileClose");
-    const mobileMenu = document.getElementById("mobileMenu");
-    const scrollBtn = document.getElementById("scrollTop");
+    const scrollTop = document.getElementById("scrollTop");
 
+    // -----------------------------
     // Mobile Menu
+    // -----------------------------
+
     if (mobileToggle && mobileMenu) {
 
-        mobileToggle.addEventListener("click", function () {
+        mobileToggle.addEventListener("click", () => {
 
             mobileMenu.classList.add("open");
+
+            document.body.style.overflow = "hidden";
 
         });
 
@@ -22,62 +31,94 @@ function initNavigation() {
 
     if (mobileClose && mobileMenu) {
 
-        mobileClose.addEventListener("click", function () {
-
-            mobileMenu.classList.remove("open");
-
-        });
+        mobileClose.addEventListener("click", closeMobileMenu);
 
     }
 
-    // Close mobile menu after clicking a link
+    // -----------------------------
+    // Close Menu when clicking link
+    // -----------------------------
+
     if (mobileMenu) {
 
-        mobileMenu.querySelectorAll("a").forEach(function (link) {
+        mobileMenu.querySelectorAll("a").forEach(link => {
 
-            link.addEventListener("click", function () {
-
-                mobileMenu.classList.remove("open");
-
-            });
+            link.addEventListener("click", closeMobileMenu);
 
         });
 
     }
 
-    // Scroll To Top Button
-    if (scrollBtn) {
+    function closeMobileMenu() {
 
-        window.addEventListener("scroll", function () {
+        mobileMenu.classList.remove("open");
+
+        document.body.style.overflow = "";
+
+    }
+
+    // -----------------------------
+    // Scroll To Top Button
+    // -----------------------------
+
+    if (scrollTop) {
+
+        window.addEventListener("scroll", () => {
 
             if (window.scrollY > 400) {
 
-                scrollBtn.style.opacity = "1";
-                scrollBtn.style.pointerEvents = "auto";
+                scrollTop.style.opacity = "1";
+                scrollTop.style.pointerEvents = "auto";
 
             } else {
 
-                scrollBtn.style.opacity = "0";
-                scrollBtn.style.pointerEvents = "none";
+                scrollTop.style.opacity = "0";
+                scrollTop.style.pointerEvents = "none";
 
             }
 
         });
 
-        scrollBtn.addEventListener("click", function () {
+        scrollTop.addEventListener("click", () => {
 
             window.scrollTo({
+
                 top: 0,
+
                 behavior: "smooth"
+
             });
 
         });
 
     }
 
-    console.log("Navigation initialized");
+    // -----------------------------
+    // Active Menu
+    // -----------------------------
+
+    const links = document.querySelectorAll(".nav-link");
+
+    links.forEach(link => {
+
+        link.addEventListener("click", function () {
+
+            links.forEach(item => {
+
+                item.classList.remove(
+                    "text-khan-blue",
+                    "font-semibold"
+                );
+
+            });
+
+            this.classList.add(
+                "text-khan-blue",
+                "font-semibold"
+            );
+
+        });
+
+    });
 
 }
-
-// Export
-window.initNavigation = initNavigation;
