@@ -2,7 +2,7 @@ const components = [
     ["header", "components/header.html"],
     ["navbar", "components/navbar.html"],
     ["notice-bar", "components/notice-bar.html"],
-    ["hero", "components/hero.html"]
+    ["hero", "components/hero.html"],
     ["ticket-search", "components/ticket-search.html"]
 ];
 
