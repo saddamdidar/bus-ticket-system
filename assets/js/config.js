@@ -1,12 +1,103 @@
-  const CONFIG = {
-            fares: { 'morning-ac': 550, 'afternoon-nonac': 300 }, // ← ভাড়া পরিবর্তন করুন (৳ ছাড়া)
-            serviceCharge: 0, // সার্ভিস চার্জ প্রতি টিকেট
-            totalSeats: 40,
-            bookedSeats: { 'morning-ac': [3,7,12,18,25,31,38], 'afternoon-nonac': [5,9,14,22,28,35] },
-            coachNames: { 'morning-ac': 'খান এন্টারপ্রাইজ AC (৭:০০ AM)', 'afternoon-nonac': 'খান এন্টারপ্রাইজ Non-AC (৩:৩০ PM)' },
-            paymentAccounts: {
-                bkash: { number: '০১XXXXXXXXX', type: 'ব্যক্তিগত / এজেন্ট', instructions: ['১। আপনার bKash অ্যাপ খুলুন', '২। "পাঠান" অপশনে যান', '৩। উপরের নম্বরে টাকা পাঠান', '৪। ট্রানজাকশন আইডি কপি করুন', '৫। নিচে ট্রানজাকশন আইডি দিন'] },
-                nagad: { number: '০১XXXXXXXXX', type: 'ব্যক্তিগত / মার্চেন্ট', instructions: ['১। Nagad অ্যাপ খুলুন', '২। "পাঠান" অপশনে যান', '৩। উপরের নম্বরে টাকা পাঠান', '৪। ট্রানজাকশন আইডি কপি করুন', '৫। নিচে ট্রানজাকশন আইডি দিন'] },
-                rocket: { number: '০১XXXXXXXXX', type: 'ব্যক্তিগত', instructions: ['১। Rocket/Dutch Bangla অ্যাপ খুলুন', '২। "পাঠান" অপশনে যান', '৩। উপরের নম্বরে টাকা পাঠান', '৪। ট্রানজাকশন আইডি কপি করুন', '৫। নিচে ট্রানজাকশন আইডি দিন'] },
-            }
-        };
+/*
+====================================================
+Khan Enterprise
+Configuration File
+====================================================
+*/
+
+const CONFIG = {
+
+    // ===========================
+    // COMPANY INFORMATION
+    // ===========================
+    company: {
+        name: "Khan Enterprise",
+        phone: "+8801302516469",
+        email: "info@khanenterprise.com",
+        website: "https://khan-paribahan.pages.dev"
+    },
+
+    // ===========================
+    // ROUTE
+    // ===========================
+    route: {
+        from: "Dhaka",
+        to: "Tarakandi"
+    },
+
+    // ===========================
+    // COACHES
+    // ===========================
+    coaches: {
+
+        "morning-ac": {
+            id: "morning-ac",
+            name: "সকালের কোচ (AC)",
+            departure: "07:00 AM",
+            fare: 300
+        },
+
+        "afternoon-nonac": {
+            id: "afternoon-nonac",
+            name: "বিকালের কোচ (Non AC)",
+            departure: "03:30 PM",
+            fare: 300
+        }
+
+    },
+
+    // ===========================
+    // BUS LAYOUT
+    // ===========================
+    bus: {
+
+        rows: 10,
+
+        columns: 4,
+
+        maxSeatSelection: 5
+
+    },
+
+    // ===========================
+    // SERVICE CHARGE
+    // ===========================
+    serviceCharge: 20,
+
+    // ===========================
+    // PAYMENT
+    // ===========================
+    payment: {
+
+        bkash: {
+            number: "01700000000",
+            accountType: "Personal"
+        },
+
+        nagad: {
+            number: "01800000000",
+            accountType: "Personal"
+        },
+
+        rocket: {
+            number: "01900000000",
+            accountType: "Personal"
+        }
+
+    },
+
+    // ===========================
+    // DEMO BOOKED SEATS
+    // ===========================
+    bookedSeats: {
+
+        "morning-ac": [2,5,8,11,18,22,29],
+
+        "afternoon-nonac": [1,3,10,15,20,35]
+
+    }
+
+};
+
+// Prevent accidental modification
+Object.freeze(CONFIG);
