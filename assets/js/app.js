@@ -1,6 +1,10 @@
       // ============ CONFIGURATION ============    
     
 
+      // ============ INITIALIZE ============
+
+    function initializeApp() {  
+
       // ============ APPLICATION STATE ============
     
     const APP_STATE = {
@@ -11,9 +15,7 @@
     currentStep: 1
 };
 
-// ============ INITIALIZE ============
 
-    function initializeApp() {  
       
     
     // DATE
