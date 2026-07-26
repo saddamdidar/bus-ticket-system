@@ -36,13 +36,13 @@
         setInterval(() => goToSlide((currentSlide + 1) % slides.length), 4500);
 
         // ============ MOBILE MENU ============
-        const element = document.getElementById("mobileToggle");
+        const mobileToggle = document.getElementById("mobileToggle");
 
 if (element) {
     element.addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
 }
 
-            const element = document.getElementById("mobileClose");
+            const mobileClose = document.getElementById("mobileClose");
 
 if (element) {
     element.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));;
