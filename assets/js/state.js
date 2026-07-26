@@ -1,9 +1,48 @@
-      // ============ APPLICATION STATE ============
-    
-    const APP_STATE = {
+/*
+====================================================
+Application State
+Single Source of Truth
+====================================================
+*/
+
+const APP_STATE = {
+
+    // ===========================
+    // JOURNEY
+    // ===========================
+
     selectedCoach: "",
+
     selectedDate: "",
+
+    // ===========================
+    // BOOKING
+    // ===========================
+
     selectedSeats: [],
+
+    passengers: [],
+
+    // ===========================
+    // PAYMENT
+    // ===========================
+
     selectedPayment: "",
-    currentStep: 1
+
+    paymentStatus: "pending",
+
+    transactionId: "",
+
+    senderNumber: "",
+
+    // ===========================
+    // UI
+    // ===========================
+
+    currentStep: 1,
+
+    modalOpen: false,
+
+    currentSlide: 0
+
 };
