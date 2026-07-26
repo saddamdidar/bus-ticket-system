@@ -35,20 +35,28 @@
         dots.forEach(d => d.addEventListener('click', () => goToSlide(+d.dataset.index)));
         setInterval(() => goToSlide((currentSlide + 1) % slides.length), 4500);
 
-        // ============ MOBILE MENU ============
-        const mobileToggle = document.getElementById("mobileToggle");
+// ============ MOBILE MENU ============
+const mobileToggle = document.getElementById("mobileToggle");
+const mobileClose = document.getElementById("mobileClose");
+const mobileMenu = document.getElementById("mobileMenu");
 
-if (element) {
-    element.addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener("click", () => {
+        mobileMenu.classList.add("open");
+    });
 }
 
-            const mobileClose = document.getElementById("mobileClose");
-
-if (element) {
-    element.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));;
+if (mobileClose && mobileMenu) {
+    mobileClose.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+    });
 }
 
-    document.querySelectorAll('#mobileMenu a').forEach(l => l.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+document.querySelectorAll("#mobileMenu a").forEach(link => {
+    link.addEventListener("click", () => {
+        mobileMenu?.classList.remove("open");
+    });
+});
 
         
 
