@@ -1,27 +1,13 @@
-// ===============================
-// APPLICATION INITIALIZER
-// ===============================
-
 function initializeApp() {
 
-    console.log("Initializing application...");
+    console.log("Initializing App...");
 
-    if (typeof initNavigation === "function") {
-        initNavigation();
-    }
+    initNavigation();
 
-    if (typeof initHero === "function") {
-        initHero();
-    }
+    initHero();
 
-    if (typeof initBooking === "function") {
-        initBooking();
-    }
+    initBooking();
 
-    if (typeof initContact === "function") {
-        initContact();
-    }
-
-    console.log("Application initialized successfully.");
+    initContact();
 
 }
