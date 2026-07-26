@@ -12,7 +12,7 @@ const components = [
     ["fare", "components/fare.html"],
     ["counters", "components/counters.html"],
     ["contact", "components/contact.html"],
-    ["footer", "components/footer.html"],
+    ["footer", "components/footer.html"]
 ];
 
 async function loadComponent(id, file) {
