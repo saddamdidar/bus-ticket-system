@@ -16,6 +16,8 @@ const components = [
 ];
 
 async function loadComponent(id, file) {
+    console.log("Loading:", id);
+
     const response = await fetch(file);
 
     if (!response.ok) {
@@ -23,7 +25,10 @@ async function loadComponent(id, file) {
     }
 
     document.getElementById(id).innerHTML = await response.text();
+
+    console.log("Loaded:", id);
 }
+
 
 async function initializePage() {
 
