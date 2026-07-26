@@ -6,7 +6,13 @@ const components = [
     ["ticket-search", "components/ticket-search.html"],
     ["features", "components/features.html"],
     ["popular-routes", "components/popular-routes.html"],
-    ["why-choose-us", "components/why-choose-us.html"]
+    ["why-choose-us", "components/why-choose-us.html"],
+    ["top-bar", "components/top-bar.html"],
+    ["mobile-menu", "components/mobile-menu.html"],
+    ["fare", "components/fare.html"],
+    ["counters", "components/counters.html"],
+    ["contact", "components/contact.html"],
+    ["footer", "components/footer.html"],
 ];
 
 async function loadComponent(id, file) {
