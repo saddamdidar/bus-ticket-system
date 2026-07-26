@@ -1,4 +1,9 @@
-   // ============ SEAT MAP ============
+function initBooking() {
+
+    console.log("Booking initialized");
+
+
+// ============ SEAT MAP ============
         function renderSeats() {
             const map = document.getElementById('seatMap');
             const booked = CONFIG.bookedSeats[selectedCoach] || [];
@@ -91,3 +96,5 @@
             }
             return true;
         }
+
+    }
