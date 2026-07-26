@@ -1,0 +1,36 @@
+<section id="search" class="py-10 md:py-14 bg-khan-gray">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 -mt-14 relative z-10 border border-gray-100">
+                <div class="text-center mb-6">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-800">টিকেট বুক করুন</h3>
+                    <p class="text-sm text-gray-500 mt-1">ঢাকা → তারাকান্দি রুটে আপনার আসন নিশ্চিত করুন</p>
+                </div>
+                <form id="searchForm" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1.5">যাত্রার তারিখ</label>
+                        <div class="relative">
+                            <iconify-icon icon="lucide:calendar" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" width="16"></iconify-icon>
+                            <input type="date" id="journeyDate" class="w-full pl-9 pr-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-khan-blue/30 focus:border-khan-blue bg-gray-50" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1.5">কোচ নির্বাচন</label>
+                        <div class="relative">
+                            <iconify-icon icon="lucide:bus" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" width="16"></iconify-icon>
+                            <select id="coachType" class="w-full pl-9 pr-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-khan-blue/30 focus:border-khan-blue bg-gray-50 appearance-none" required>
+                                <option value="">কোচ বাছাই করুন</option>
+                                <option value="morning-ac">সকালের কোচ (AC) — ৭:০০ AM</option>
+                                <option value="afternoon-nonac">বিকালের কোচ (Non-AC) — ৩:৩০ PM</option>
+                            </select>
+                            <iconify-icon icon="lucide:chevron-down" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" width="14"></iconify-icon>
+                        </div>
+                    </div>
+                    <div class="flex items-end">
+                        <button type="submit" class="btn-primary w-full bg-khan-blue hover:bg-khan-darkblue text-white py-3 rounded-lg font-semibold text-sm flex items-center justify-center gap-2">
+                            <iconify-icon icon="lucide:search" width="16"></iconify-icon> আসন দেখুন
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
