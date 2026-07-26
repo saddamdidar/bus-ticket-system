@@ -4,7 +4,8 @@ const components = [
     ["notice-bar", "components/notice-bar.html"],
     ["hero", "components/hero.html"],
     ["ticket-search", "components/ticket-search.html"],
-    ["features", "components/features.html"]
+    ["features", "components/features.html"],
+    ["popular-routes", "components/popular-routes.html"]
 ];
 
 async function loadComponent(id, file) {
