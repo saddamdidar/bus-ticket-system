@@ -8,6 +8,6 @@ function initializeApp() {
 
     initBooking();
 
-    initContact();
+    
 
 }
