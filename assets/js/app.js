@@ -15,6 +15,7 @@
 
     function initializeApp() {  
       
+         console.log("initializeApp() started");
     
     // DATE
         const today = new Date().toISOString().split('T')[0];
