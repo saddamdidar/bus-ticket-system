@@ -78,4 +78,3 @@ Object.assign(window, {
     processPayment
 });
 
-}
