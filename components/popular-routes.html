@@ -1,0 +1,43 @@
+<section id="schedule" class="py-12 md:py-16 bg-khan-gray">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <span class="text-khan-blue text-xs font-bold tracking-widest uppercase">Bus Schedule</span>
+                <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mt-2">বাস সিডিউল</h3>
+                <p class="text-sm text-gray-500 mt-2">ঢাকা থেকে তারাকান্দি — দৈনিক বাস ছাড়ার সময়সূচী</p>
+            </div>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-khan-blue text-white">
+                                <th class="px-4 py-3 text-left font-semibold">কোচ</th>
+                                <th class="px-4 py-3 text-left font-semibold">রুট</th>
+                                <th class="px-4 py-3 text-left font-semibold">ছাড়ার সময়</th>
+                                <th class="px-4 py-3 text-left font-semibold">ধরন</th>
+                                <th class="px-4 py-3 text-left font-semibold">ভাড়া</th>
+                                <th class="px-4 py-3 text-center font-semibold">অ্যাকশন</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-3 font-medium text-gray-800">খান এন্টারপ্রাইজ AC</td>
+                                <td class="px-4 py-3 text-gray-600">ঢাকা → তারাকান্দি</td>
+                                <td class="px-4 py-3 font-semibold text-gray-800">সকাল ৭:০০ AM</td>
+                                <td class="px-4 py-3"><span class="text-[10px] bg-khan-lightblue text-khan-blue px-2 py-1 rounded-full font-medium">AC</span></td>
+                                <td class="px-4 py-3 font-bold text-khan-blue" id="fareAC">৳300</td>
+                                <td class="px-4 py-3 text-center"><button onclick="quickBook('morning-ac')" class="text-xs bg-khan-blue text-white px-3 py-1.5 rounded-md font-medium hover:bg-khan-darkblue transition-colors">বুক করুন</button></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-3 font-medium text-gray-800">খান এন্টারপ্রাইজ</td>
+                                <td class="px-4 py-3 text-gray-600">ঢাকা → তারাকান্দি</td>
+                                <td class="px-4 py-3 font-semibold text-gray-800">বিকাল ৩:৩০ PM</td>
+                                <td class="px-4 py-3"><span class="text-[10px] bg-orange-100 text-orange-600 px-2 py-1 rounded-full font-medium">Non-AC</span></td>
+                                <td class="px-4 py-3 font-bold text-khan-blue" id="fareNonAC">৳300</td>
+                                <td class="px-4 py-3 text-center"><button onclick="quickBook('afternoon-nonac')" class="text-xs bg-khan-blue text-white px-3 py-1.5 rounded-md font-medium hover:bg-khan-darkblue transition-colors">বুক করুন</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
