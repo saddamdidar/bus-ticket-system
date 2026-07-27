@@ -51,35 +51,44 @@ if (searchForm) {
             map.innerHTML = html;
         }
 
+     
+     
         function toggleSeat(num) {
-           const idx = APP_STATE.selectedSeats.indexOf(num);
-            if (idx > -1) {
-                APP_STATE.selectedSeats.splice(idx, 1);
-            } else {
-                if (APP_STATE.selectedSeats.length >= 5) { showToast('⚠️ সর্বোচ্চ ৫টি আসন বুক করতে পারবেন'); return; }
-                APP_STATE.selectedSeats.push(num);
-            }
-            // Update seat visuals
-            document.querySelectorAll('.seat').forEach(s => {
-                const n = +s.dataset.seat;
-                if (!s.classList.contains('booked') && !s.classList.contains('driver')) {
-                    s.classList.toggle('selected', selectedSeats.includes(n));
-                }
-            });
-            updateSeatInfo();
+
+    const idx = APP_STATE.selectedSeats.indexOf(num);
+
+    if (idx > -1) {
+
+        APP_STATE.selectedSeats.splice(idx, 1);
+
+    } else {
+
+        if (APP_STATE.selectedSeats.length >= 5) {
+            showToast("⚠️ সর্বোচ্চ ৫টি আসন বুক করতে পারবেন");
+            return;
         }
 
-        function updateSeatInfo() {
-           const fare = CONFIG.fares[APP_STATE.selectedCoach];
-            document.getElementById("seatCount").textContent =
-    toBangla(APP_STATE.selectedSeats.length);
+        APP_STATE.selectedSeats.push(num);
+    }
 
-document.getElementById("seatTotal").textContent =
-    "৳" + toBangla(APP_STATE.selectedSeats.length * fare);
+    document.querySelectorAll(".seat").forEach(seat => {
 
-document.getElementById("toStep2").disabled =
-    APP_STATE.selectedSeats.length === 0;
+        const seatNo = Number(seat.dataset.seat);
+
+        if (
+            !seat.classList.contains("booked") &&
+            !seat.classList.contains("driver")
+        ) {
+            seat.classList.toggle(
+                "selected",
+                APP_STATE.selectedSeats.includes(seatNo)
+            );
         }
+
+    });
+
+    updateSeatInfo();
+}
 
 
          // ============ PASSENGER FORMS ============
