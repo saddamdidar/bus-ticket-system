@@ -2,6 +2,29 @@ function initBooking() {
 
     console.log("Booking initialized");
 
+    const searchForm = document.getElementById("searchForm");
+
+console.log(searchForm);
+
+if (searchForm) {
+    searchForm.addEventListener("submit", function (e) {
+
+        console.log("Form Submitted");
+
+        e.preventDefault();
+
+        APP_STATE.selectedDate =
+            document.getElementById("journeyDate").value;
+
+        APP_STATE.selectedCoach =
+            document.getElementById("coachType").value;
+
+        console.log(APP_STATE);
+
+        openModal();
+    });
+}
+
 
 // ============ SEAT MAP ============
         function renderSeats() {
