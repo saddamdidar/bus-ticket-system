@@ -8,9 +8,9 @@
 
 function renderPaymentInfo() {
 
-    const fare = CONFIG.fares[APP_STATE.selectedCoach] || 0;
+    const fare = CONFIG.fares[APP_STATE.APP_STATE.selectedCoach] || 0;
 
-    const count = APP_STATE.selectedSeats.length;
+    const count = APP_STATE.APP_STATE.selectedSeats.length;
 
     const subtotal = fare * count;
 
@@ -41,7 +41,7 @@ function renderPaymentInfo() {
 
 function selectPayment(method) {
 
-    APP_STATE.selectedPayment = method;
+    APP_STATE.APP_STATE.selectedPayment = method;
 
     document.querySelectorAll(".payment-option").forEach(option => {
 
@@ -114,7 +114,7 @@ function updatePayButton() {
         document.getElementById("senderNumber").value.trim();
 
     document.getElementById("payBtn").disabled = !(
-        APP_STATE.selectedPayment &&
+        APP_STATE.APP_STATE.selectedPayment &&
         trx &&
         sender
     );
@@ -181,10 +181,10 @@ function processPayment() {
 function renderConfirmation() {
 
     const fare =
-        CONFIG.fares[APP_STATE.selectedCoach] || 0;
+        CONFIG.fares[APP_STATE.APP_STATE.selectedCoach] || 0;
 
     const count =
-        APP_STATE.selectedSeats.length;
+        APP_STATE.APP_STATE.selectedSeats.length;
 
     const total =
         (fare * count) +
@@ -204,18 +204,18 @@ function renderConfirmation() {
         "KPB-" + Date.now().toString(36).toUpperCase();
 
     document.getElementById("invDate").textContent =
-        formatDate(APP_STATE.selectedDate);
+        formatDate(APP_STATE.APP_STATE.selectedDate);
 
     document.getElementById("invCoach").textContent =
-        CONFIG.coachNames[APP_STATE.selectedCoach];
+        CONFIG.coachNames[APP_STATE.APP_STATE.selectedCoach];
 
     document.getElementById("invSeats").textContent =
-        APP_STATE.selectedSeats
+        APP_STATE.APP_STATE.selectedSeats
             .map(seat => toBangla(seat))
             .join(", ");
 
     document.getElementById("invMethod").textContent =
-        names[APP_STATE.selectedPayment];
+        names[APP_STATE.APP_STATE.selectedPayment];
 
     document.getElementById("invTrx").textContent =
         document.getElementById("trxId").value;
