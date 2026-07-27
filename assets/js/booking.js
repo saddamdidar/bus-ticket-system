@@ -25,29 +25,10 @@ if (searchForm) {
     });
 }
 
-
-     function toggleSeat(num) {
-            const idx = selectedSeats.indexOf(num);
-            if (idx > -1) {
-                selectedSeats.splice(idx, 1);
-            } else {
-                if (selectedSeats.length >= 5) { showToast('⚠️ সর্বোচ্চ ৫টি আসন বুক করতে পারবেন'); return; }
-                selectedSeats.push(num);
-            }
-            // Update seat visuals
-            document.querySelectorAll('.seat').forEach(s => {
-                const n = +s.dataset.seat;
-                if (!s.classList.contains('booked') && !s.classList.contains('driver')) {
-                    s.classList.toggle('selected', selectedSeats.includes(n));
-                }
-            });
-            updateSeatInfo();
-        }
-
 // ============ SEAT MAP ============
         function renderSeats() {
             const map = document.getElementById('seatMap');
-            const booked = CONFIG.bookedSeats[selectedCoach] || [];
+            const booked = CONFIG.bookedSeats[APP_STATE.selectedCoach] || [];
             let html = '<div class="flex items-end gap-6 mb-2">';
             html += '<div class="w-[172px]"></div>';
             html += '<div class="seat driver">চালক</div>';
@@ -68,13 +49,34 @@ if (searchForm) {
             map.innerHTML = html;
         }
 
-   
+        function toggleSeat(num) {
+           const idx = APP_STATE.selectedSeats.indexOf(num);
+            if (idx > -1) {
+                APP_STATE.selectedSeats.splice(idx, 1);
+            } else {
+                if (APP_STATE.selectedSeats.length >= 5) { showToast('⚠️ সর্বোচ্চ ৫টি আসন বুক করতে পারবেন'); return; }
+                APP_STATE.selectedSeats.push(num);
+            }
+            // Update seat visuals
+            document.querySelectorAll('.seat').forEach(s => {
+                const n = +s.dataset.seat;
+                if (!s.classList.contains('booked') && !s.classList.contains('driver')) {
+                    s.classList.toggle('selected', selectedSeats.includes(n));
+                }
+            });
+            updateSeatInfo();
+        }
 
         function updateSeatInfo() {
-            const fare = CONFIG.fares[selectedCoach];
-            document.getElementById('seatCount').textContent = toBangla(selectedSeats.length);
-            document.getElementById('seatTotal').textContent = '৳' + toBangla(selectedSeats.length * fare);
-            document.getElementById('toStep2').disabled = selectedSeats.length === 0;
+           const fare = CONFIG.fares[APP_STATE.selectedCoach];
+            document.getElementById("seatCount").textContent =
+    toBangla(APP_STATE.selectedSeats.length);
+
+document.getElementById("seatTotal").textContent =
+    "৳" + toBangla(APP_STATE.selectedSeats.length * fare);
+
+document.getElementById("toStep2").disabled =
+    APP_STATE.selectedSeats.length === 0;
         }
 
 
@@ -82,7 +84,7 @@ if (searchForm) {
         function renderPassengerForms() {
             const container = document.getElementById('passengerForms');
             let html = '';
-            selectedSeats.forEach((seat, i) => {
+            APP_STATE.selectedSeats.forEach((seat, i) => {
                 html += `
                 <div class="bg-gray-50 rounded-xl p-4 mb-3 border border-gray-200">
                     <p class="text-sm font-semibold text-gray-800 mb-3">যাত্রী ${toBangla(i+1)} — আসন নং: <span class="text-khan-blue">${toBangla(seat)}</span></p>
