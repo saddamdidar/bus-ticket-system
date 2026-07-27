@@ -25,6 +25,8 @@ if (searchForm) {
     });
 }
 
+}
+
 // ============ SEAT MAP ============
         function renderSeats() {
             const map = document.getElementById('seatMap');
@@ -124,4 +126,4 @@ document.getElementById("toStep2").disabled =
             return true;
         }
 
-    }
+    
