@@ -3,13 +3,11 @@
 
 function openModal() {
 
-    console.log("openModal()");
-
     APP_STATE.selectedSeats = [];
-    APP_STATE.selectedPayment = "";
     APP_STATE.currentStep = 1;
 
     document.getElementById("bookingModal").classList.add("open");
+
     document.body.style.overflow = "hidden";
 
     document.getElementById("modalDate").textContent =
@@ -19,7 +17,9 @@ function openModal() {
         CONFIG.coachNames[APP_STATE.selectedCoach];
 
     updateStepUI();
+
     renderSeats();
+
     updateSeatInfo();
 
 }
