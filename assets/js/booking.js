@@ -1,138 +1,278 @@
+// ======================================================
+// BOOKING.JS
+// ======================================================
+
 function initBooking() {
 
     console.log("Booking initialized");
 
+    // ==========================
+    // Journey Date
+    // ==========================
+
+    const journeyDate = document.getElementById("journeyDate");
+
+    if (journeyDate) {
+        const today = new Date().toISOString().split("T")[0];
+        journeyDate.min = today;
+        journeyDate.value = today;
+    }
+
+    // ==========================
+    // Search Form
+    // ==========================
+
     const searchForm = document.getElementById("searchForm");
 
-console.log(searchForm);
+    if (searchForm) {
 
-if (searchForm) {
-    searchForm.addEventListener("submit", function (e) {
+        searchForm.addEventListener("submit", function (e) {
 
-        console.log("Form Submitted");
+            e.preventDefault();
 
-        e.preventDefault();
+            APP_STATE.selectedDate =
+                document.getElementById("journeyDate").value;
 
-        APP_STATE.selectedDate =
-            document.getElementById("journeyDate").value;
+            APP_STATE.selectedCoach =
+                document.getElementById("coachType").value;
 
-        APP_STATE.selectedCoach =
-            document.getElementById("coachType").value;
-
-        console.log(APP_STATE);
-
-        openModal();
-    });
-}
-
-}
-
-// ============ SEAT MAP ============
-        function renderSeats() {
-            const map = document.getElementById('seatMap');
-            const booked = CONFIG.bookedSeats[APP_STATE.selectedCoach] || [];
-            let html = '<div class="flex items-end gap-6 mb-2">';
-            html += '<div class="w-[172px]"></div>';
-            html += '<div class="seat driver">চালক</div>';
-            html += '</div>';
-
-            for (let row = 0; row < 10; row++) {
-                html += '<div class="flex items-center gap-1.5">';
-                html += `<div class="w-5 text-[10px] text-gray-400 text-center font-english">${row + 1}</div>`;
-                for (let col = 0; col < 4; col++) {
-                    const num = row * 4 + col + 1;
-                    if (col === 2) html += '<div class="w-6"></div>'; // aisle
-                    const isBooked = booked.includes(num);
-                    const cls = isBooked ? 'booked' : '';
-                    html += `<div class="seat ${cls}" data-seat="${num}" onclick="${isBooked ? '' : `toggleSeat(${num})`}">${num}</div>`;
-                }
-                html += '</div>';
+            if (!APP_STATE.selectedCoach) {
+                showToast("⚠️ কোচ নির্বাচন করুন");
+                return;
             }
-            map.innerHTML = html;
+
+            openModal();
+
+        });
+
+    }
+
+}
+
+// ======================================================
+// Seat Map
+// ======================================================
+
+function renderSeats() {
+
+    const map = document.getElementById("seatMap");
+
+    if (!map) return;
+
+    const booked =
+        CONFIG.bookedSeats[APP_STATE.selectedCoach] || [];
+
+    let html = "";
+
+    html += `
+        <div class="flex items-end gap-6 mb-2">
+            <div class="w-[172px]"></div>
+            <div class="seat driver">চালক</div>
+        </div>
+    `;
+
+    for (let row = 0; row < 10; row++) {
+
+        html += `<div class="flex items-center gap-1.5">`;
+
+        html += `
+            <div class="w-5 text-[10px] text-gray-400 text-center font-english">
+                ${row + 1}
+            </div>
+        `;
+
+        for (let col = 0; col < 4; col++) {
+
+            const seatNo = row * 4 + col + 1;
+
+            if (col === 2) {
+                html += `<div class="w-6"></div>`;
+            }
+
+            const bookedSeat = booked.includes(seatNo);
+
+            html += `
+                <div
+                    class="seat ${bookedSeat ? "booked" : ""}"
+                    data-seat="${seatNo}"
+                    ${
+                        bookedSeat
+                            ? ""
+                            : `onclick="toggleSeat(${seatNo})"`
+                    }>
+                    ${seatNo}
+                </div>
+            `;
         }
 
-     
-     
-        function toggleSeat(num) {
+        html += `</div>`;
 
-    const idx = APP_STATE.selectedSeats.indexOf(num);
+    }
 
-    if (idx > -1) {
+    map.innerHTML = html;
 
-        APP_STATE.selectedSeats.splice(idx, 1);
+}
+
+// ======================================================
+// Toggle Seat
+// ======================================================
+
+function toggleSeat(seatNo) {
+
+    const index =
+        APP_STATE.selectedSeats.indexOf(seatNo);
+
+    if (index > -1) {
+
+        APP_STATE.selectedSeats.splice(index, 1);
 
     } else {
 
         if (APP_STATE.selectedSeats.length >= 5) {
+
             showToast("⚠️ সর্বোচ্চ ৫টি আসন বুক করতে পারবেন");
             return;
+
         }
 
-        APP_STATE.selectedSeats.push(num);
+        APP_STATE.selectedSeats.push(seatNo);
+
     }
 
     document.querySelectorAll(".seat").forEach(seat => {
 
-        const seatNo = Number(seat.dataset.seat);
-
         if (
-            !seat.classList.contains("booked") &&
-            !seat.classList.contains("driver")
-        ) {
-            seat.classList.toggle(
-                "selected",
-                APP_STATE.selectedSeats.includes(seatNo)
-            );
-        }
+            seat.classList.contains("booked") ||
+            seat.classList.contains("driver")
+        ) return;
+
+        seat.classList.toggle(
+            "selected",
+            APP_STATE.selectedSeats.includes(
+                Number(seat.dataset.seat)
+            )
+        );
 
     });
 
     updateSeatInfo();
+
 }
 
+// ======================================================
+// Seat Summary
+// ======================================================
 
-         // ============ PASSENGER FORMS ============
-        function renderPassengerForms() {
-            const container = document.getElementById('passengerForms');
-            let html = '';
-            APP_STATE.selectedSeats.forEach((seat, i) => {
-                html += `
-                <div class="bg-gray-50 rounded-xl p-4 mb-3 border border-gray-200">
-                    <p class="text-sm font-semibold text-gray-800 mb-3">যাত্রী ${toBangla(i+1)} — আসন নং: <span class="text-khan-blue">${toBangla(seat)}</span></p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">নাম *</label>
-                            <input type="text" class="passenger-name w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-khan-blue/30 focus:border-khan-blue bg-white" data-idx="${i}" placeholder="পুরো নাম" required>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">মোবাইল নম্বর *</label>
-                            <input type="tel" class="passenger-phone w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-khan-blue/30 focus:border-khan-blue bg-white font-english" data-idx="${i}" placeholder="০১XXXXXXXXX" required>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">জাতীয়তা</label>
-                            <select class="passenger-nid w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-khan-blue/30 focus:border-khan-blue bg-white appearance-none" data-idx="${i}">
-                                <option value="bangladeshi">বাংলাদেশী</option>
-                                <option value="other">অন্যান্য</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-1">NID / পাসপোর্ট (ঐচ্ছিক)</label>
-                            <input type="text" class="passenger-id w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-khan-blue/30 focus:border-khan-blue bg-white font-english" data-idx="${i}" placeholder="NID বা পাসপোর্ট নম্বর">
-                        </div>
-                    </div>
-                </div>`;
-            });
-            container.innerHTML = html;
+function updateSeatInfo() {
+
+    const fare =
+        CONFIG.fares[APP_STATE.selectedCoach] || 0;
+
+    document.getElementById("seatCount").textContent =
+        toBangla(APP_STATE.selectedSeats.length);
+
+    document.getElementById("seatTotal").textContent =
+        "৳" +
+        toBangla(
+            APP_STATE.selectedSeats.length * fare
+        );
+
+    document.getElementById("toStep2").disabled =
+        APP_STATE.selectedSeats.length === 0;
+
+}
+
+// ======================================================
+// Passenger Forms
+// ======================================================
+
+function renderPassengerForms() {
+
+    const container =
+        document.getElementById("passengerForms");
+
+    if (!container) return;
+
+    let html = "";
+
+    APP_STATE.selectedSeats.forEach((seat, i) => {
+
+        html += `
+        <div class="bg-gray-50 rounded-xl p-4 mb-3 border">
+
+            <p class="font-semibold mb-3">
+                যাত্রী ${toBangla(i + 1)}
+                -
+                আসন ${toBangla(seat)}
+            </p>
+
+            <input
+                class="passenger-name w-full border rounded p-2 mb-2"
+                placeholder="নাম">
+
+            <input
+                class="passenger-phone w-full border rounded p-2"
+                placeholder="মোবাইল নম্বর">
+
+        </div>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+}
+
+// ======================================================
+// Validation
+// ======================================================
+
+function validatePassengerForms() {
+
+    const names =
+        document.querySelectorAll(".passenger-name");
+
+    const phones =
+        document.querySelectorAll(".passenger-phone");
+
+    for (let i = 0; i < names.length; i++) {
+
+        if (!names[i].value.trim()) {
+
+            showToast("নাম লিখুন");
+
+            names[i].focus();
+
+            return false;
+
         }
 
-        function validatePassengerForms() {
-            const names = document.querySelectorAll('.passenger-name');
-            const phones = document.querySelectorAll('.passenger-phone');
-            for (let i = 0; i < names.length; i++) {
-                if (!names[i].value.trim()) { showToast(`⚠️ যাত্রী ${toBangla(i+1)}-এর নাম দিন`); names[i].focus(); return false; }
-                if (!phones[i].value.trim()) { showToast(`⚠️ যাত্রী ${toBangla(i+1)}-এর মোবাইল নম্বর দিন`); phones[i].focus(); return false; }
-            }
-            return true;
+        if (!phones[i].value.trim()) {
+
+            showToast("মোবাইল নম্বর লিখুন");
+
+            phones[i].focus();
+
+            return false;
+
         }
 
-    
+    }
+
+    return true;
+
+}
+
+// ======================================================
+// Export
+// ======================================================
+
+Object.assign(window, {
+
+    renderSeats,
+    toggleSeat,
+    updateSeatInfo,
+    renderPassengerForms,
+    validatePassengerForms
+
+});
