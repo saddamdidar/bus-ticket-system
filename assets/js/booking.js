@@ -26,6 +26,24 @@ if (searchForm) {
 }
 
 
+     function toggleSeat(num) {
+            const idx = selectedSeats.indexOf(num);
+            if (idx > -1) {
+                selectedSeats.splice(idx, 1);
+            } else {
+                if (selectedSeats.length >= 5) { showToast('⚠️ সর্বোচ্চ ৫টি আসন বুক করতে পারবেন'); return; }
+                selectedSeats.push(num);
+            }
+            // Update seat visuals
+            document.querySelectorAll('.seat').forEach(s => {
+                const n = +s.dataset.seat;
+                if (!s.classList.contains('booked') && !s.classList.contains('driver')) {
+                    s.classList.toggle('selected', selectedSeats.includes(n));
+                }
+            });
+            updateSeatInfo();
+        }
+
 // ============ SEAT MAP ============
         function renderSeats() {
             const map = document.getElementById('seatMap');
@@ -50,23 +68,7 @@ if (searchForm) {
             map.innerHTML = html;
         }
 
-        function toggleSeat(num) {
-            const idx = selectedSeats.indexOf(num);
-            if (idx > -1) {
-                selectedSeats.splice(idx, 1);
-            } else {
-                if (selectedSeats.length >= 5) { showToast('⚠️ সর্বোচ্চ ৫টি আসন বুক করতে পারবেন'); return; }
-                selectedSeats.push(num);
-            }
-            // Update seat visuals
-            document.querySelectorAll('.seat').forEach(s => {
-                const n = +s.dataset.seat;
-                if (!s.classList.contains('booked') && !s.classList.contains('driver')) {
-                    s.classList.toggle('selected', selectedSeats.includes(n));
-                }
-            });
-            updateSeatInfo();
-        }
+   
 
         function updateSeatInfo() {
             const fare = CONFIG.fares[selectedCoach];
