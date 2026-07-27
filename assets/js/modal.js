@@ -13,6 +13,13 @@ function openModal() {
     document.getElementById("modalDate").textContent =
         formatDate(APP_STATE.selectedDate);
 
+
+        console.log(CONFIG);
+console.log(CONFIG.coachNames);
+console.log(APP_STATE.selectedCoach);
+
+
+
     document.getElementById("modalCoach").textContent =
         CONFIG.coachNames[APP_STATE.selectedCoach];
 
