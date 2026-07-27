@@ -3,6 +3,8 @@
 
 function openModal() {
 
+    console.log("openModal()");
+
     APP_STATE.selectedSeats = [];
     APP_STATE.selectedPayment = "";
     APP_STATE.currentStep = 1;
