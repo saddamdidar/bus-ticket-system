@@ -1,15 +1,3 @@
-// ===============================
-// GLOBAL APPLICATION STATE
-// ===============================
-
-const APP_STATE = {
-    selectedCoach: "",
-    selectedDate: "",
-    selectedSeats: [],
-    passengers: [],
-    selectedPayment: "",
-    currentStep: 1
-};
 
 
 
